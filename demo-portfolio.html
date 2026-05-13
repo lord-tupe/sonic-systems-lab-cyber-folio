@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Atupele Nathan Mkagula</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.16/400.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.16/500.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.16/600.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.16/700.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.16/800.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5.0.18/300.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5.0.18/400.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5.0.18/500.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5.0.18/600.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@5.0.18/700.css">
+    
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --brand-blue: #1e90ff;
+            --brand-light: #4fc3f7;
+            --brand-gold: #ffd700;
+            --brand-purple: #b388ff;
+            --brand-green: #69f0ae;
+            --brand-warm: #ffab40;
+            --duration-fast: 220ms;
+            --duration-medium: 520ms;
+            --duration-long: 800ms;
+            --easing: cubic-bezier(.2,.9,.3,1);
+            --card-ease: cubic-bezier(.16,.84,.32,1);
+            --spring: cubic-bezier(.34,1.56,.64,1);
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111117;
+            --bg-tertiary: #1a1a24;
+            --text-primary: #f0f0f0;
+            --text-secondary: rgba(240,240,240,0.6);
+            --text-muted: rgba(240,240,240,0.35);
+            --border-light: rgba(255,255,255,0.08);
+            --card-bg: rgba(255,255,255,0.04);
+            --card-glass: rgba(255,255,255,0.06);
+            --nav-bg: rgba(10,10,15,0.85);
+            --surface: rgba(255,255,255,0.03);
+            --vh: 1vh;
+        }
+
+        body.light-mode {
+            --bg-primary: #fafafa;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f4f4f7;
+            --text-primary: #18181b;
+            --text-secondary: #52525b;
+            --text-muted: #a1a1aa;
+            --border-light: #e4e4e7;
+            --card-bg: #ffffff;
+            --card-glass: rgba(255,255,255,0.8);
+            --nav-bg: rgba(255,255,255,0.92);
+            --surface: rgba(0,0,0,0.03);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.15) transparent;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            cursor: none;
+            transition: background-color 0.4s ease, color 0.3s ease;
+        }
+
+        .loader { position: fixed; inset: 0; z-index: 10000; background: #0a0a0f; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1.5rem; transition: opacity 0.6s, visibility 0.6s; }
+        .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .loader-bar { width: 120px; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+        .loader-bar-inner { height: 100%; background: var(--brand-light); border-radius: 2px; animation: loader-progress 1.5s ease-in-out forwards; }
+        @keyframes loader-progress { 0% { width: 0%; } 100% { width: 100%; } }
+        .loader-text { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); }
+
+        #cursor { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background: var(--brand-gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 220ms var(--spring), height 220ms var(--spring), background 220ms, opacity 220ms; mix-blend-mode: exclusion; }
+        #cursor-ring { position: fixed; top: 0; left: 0; width: 36px; height: 36px; border: 1.5px solid rgba(255,215,0,0.55); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 380ms var(--easing), height 380ms var(--easing), border-color 380ms, transform 380ms var(--easing); }
+        body.cursor-hover #cursor { width: 20px; height: 20px; }
+        body.cursor-hover #cursor-ring { width: 54px; height: 54px; border-color: rgba(255,215,0,0.4); }
+
+        @media (hover: none) and (pointer: coarse), (prefers-reduced-motion: reduce) { body { cursor: auto; } #cursor, #cursor-ring { display: none; } }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 2rem; transition: all 0.4s var(--card-ease); }
+        .nav.scrolled { background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-light); padding: 0.7rem 2rem; }
+        .nav-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.02em; color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; cursor: none; }
+        .nav-logo .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-light); display: inline-block; animation: pulse-dot 2s ease-in-out infinite; }
+        @keyframes pulse-dot { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(0.7); } }
+        
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em; transition: color 0.3s; position: relative; cursor: none; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--brand-blue), var(--brand-light)); border-radius: 999px; transition: width 280ms var(--spring); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        
+        .nav-cta { padding: 0.5rem 1.25rem; background: rgba(79,195,247,0.1); border: 1px solid rgba(79,195,247,0.3); border-radius: 8px; color: var(--brand-light) !important; font-weight: 600 !important; transition: all 0.3s !important; }
+        .nav-cta:hover { background: rgba(79,195,247,0.2) !important; border-color: var(--brand-light) !important; }
+        .nav-cta::after { display: none !important; }
+
+        .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: none; background: none; border: none; padding: 4px; }
+        .nav-hamburger span { width: 24px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: all 0.3s; }
+
+        #dark-mode-toggle { background: transparent; border: none; color: var(--text-secondary); font-size: 1.1rem; cursor: none; padding: 0.5rem; border-radius: 50%; transition: all 0.3s; }
+        #dark-mode-toggle:hover { color: var(--brand-light); transform: rotate(15deg) scale(1.1); }
+
+        .hero-section { position: relative; min-height: 100vh; min-height: calc(var(--vh, 1vh) * 100); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; z-index: 0; }
+        .hero-bg-image { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 8s ease-out; }
+        .hero-section:hover .hero-bg-image { transform: scale(1.03); }
+        .hero-bg-overlay { position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse at 30% 50%, rgba(0,50,80,0.4) 0%, transparent 60%), radial-gradient(ellipse at 70% 30%, rgba(0,30,60,0.3) 0%, transparent 50%), linear-gradient(to bottom, rgba(10,10,15,0.3), rgba(10,10,15,0.8)); }
+        .light-mode .hero-bg-overlay { background: radial-gradient(ellipse at 30% 50%, rgba(30,144,255,0.15) 0%, transparent 60%), radial-gradient(ellipse at 70% 30%, rgba(30,144,255,0.1) 0%, transparent 50%), linear-gradient(to bottom, rgba(250,250,250,0.5), rgba(250,250,250,0.85)); }
+        .hero-canvas { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+        
+        .hero-content { position: relative; z-index: 10; text-align: center; max-width: 900px; padding: 2rem; }
+        .hero-label { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background: rgba(79,195,247,0.1); border: 1px solid rgba(79,195,247,0.2); color: var(--brand-light); }
+        .hero-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+        .hero-title .highlight { background: linear-gradient(135deg, var(--brand-blue), var(--brand-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-subtitle { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text-secondary); line-height: 1.7; max-width: 650px; margin: 0 auto 2.5rem; font-weight: 400; }
+        .hero-cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        
+        .btn-glow { position: relative; overflow: hidden; transition: transform 280ms var(--spring), box-shadow 280ms; background: linear-gradient(135deg, var(--brand-blue), #3b82f6); color: white; border: none; padding: 0.85rem 2rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; font-family: var(--font-body); cursor: none; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-glow::before { content: ''; position: absolute; inset: 0; background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%); transform: translateX(-100%); transition: transform 500ms var(--easing); }
+        .btn-glow:hover::before { transform: translateX(100%); }
+        .btn-glow:hover { transform: scale(1.04) translateY(-2px); box-shadow: 0 8px 28px rgba(30,144,255,0.35); }
+        .btn-glow:active { transform: scale(0.97); }
+        
+        .btn-outline { padding: 0.85rem 2rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; font-family: var(--font-body); cursor: none; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--text-primary); border: 1px solid var(--border-light); backdrop-filter: blur(10px); }
+        .btn-outline:hover { border-color: var(--text-secondary); transform: translateY(-2px); }
+
+        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--text-secondary); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+        .scroll-indicator .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--text-secondary), transparent); animation: scroll-pulse 2s ease-in-out infinite; }
+        @keyframes scroll-pulse { 0%,100% { opacity:1; height:40px; } 50% { opacity:0.3; height:20px; } }
+
+        .section { padding: 6rem 2rem; position: relative; }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        .section-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--brand-light); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+        .section-label::before { content: ''; width: 24px; height: 1px; background: var(--brand-light); }
+        .section-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1.5rem; }
+        .section-description { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.75; max-width: 700px; }
+
+        .glass-card { background: var(--card-glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--border-light); border-radius: 16px; padding: 2rem; transition: all 0.4s var(--card-ease); }
+        .glass-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .light-mode .glass-card:hover { box-shadow: 0 20px 60px rgba(30,144,255,0.1); border-color: var(--brand-blue); }
+
+        .ripple { position: absolute; border-radius: 50%; background: rgba(30,144,255,0.18); transform: scale(0); animation: ripple-anim 600ms var(--easing) forwards; pointer-events: none; }
+        @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
+
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+        .about-portrait { position: relative; aspect-ratio: 4/5; border-radius: 20px; overflow: hidden; background: var(--surface); border: 1px solid var(--border-light); }
+        .about-portrait img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--card-ease); }
+        .about-portrait:hover img { transform: scale(1.05); }
+        .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+        .stat-item { text-align: center; padding: 1.25rem; background: var(--surface); border: 1px solid var(--border-light); border-radius: 12px; transition: all 0.3s; }
+        .stat-item:hover { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); }
+        .light-mode .stat-item:hover { border-color: var(--brand-blue); }
+        .stat-number { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--brand-light); line-height: 1; margin-bottom: 0.4rem; }
+        .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+        .about-text p { margin-bottom: 1.25rem; color: var(--text-secondary); line-height: 1.8; }
+        .about-text p strong { color: var(--text-primary); font-weight: 600; }
+
+        .terminal { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; background: #070707; color: #00ff9f; padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border-light); font-size: 0.85rem; line-height: 1.8; }
+        .terminal .cmd { color: var(--brand-light); }
+        .light-mode .terminal { background: #1a1a2e; }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .skill-card { padding: 1.75rem; position: relative; overflow: hidden; }
+        .skill-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--card-accent, var(--brand-light)), transparent); opacity: 0; transition: opacity 0.4s; }
+        .skill-card:hover::before { opacity: 1; }
+        .skill-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.25rem; }
+        .skill-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.75rem; }
+        .skill-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+        .skill-tag { padding: 0.25rem 0.65rem; border-radius: 100px; font-size: 0.7rem; font-weight: 500; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); color: var(--text-secondary); }
+
+        .experience-card { padding: 2rem; }
+        .experience-card .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+        .experience-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; }
+        .experience-card .exp-company { color: var(--brand-light); font-weight: 600; font-size: 0.95rem; }
+        .experience-card .exp-date { color: var(--text-muted); font-size: 0.85rem; }
+        .experience-card ul { list-style: none; margin-top: 1rem; }
+        .experience-card ul li { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.5rem; }
+        .experience-card ul li i { color: var(--brand-light); margin-top: 4px; font-size: 0.75rem; flex-shrink: 0; }
+
+        .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .edu-card { padding: 2rem; }
+        .edu-card .edu-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .edu-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; margin-bottom: 0.25rem; }
+        .edu-card .edu-school { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .edu-card .edu-degree { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+        .edu-card .edu-year { color: var(--text-muted); font-size: 0.8rem; }
+
+        .achieve-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .achieve-card { padding: 2rem; background: linear-gradient(135deg, rgba(30,144,255,0.08), rgba(79,195,247,0.03)); border: 1px solid rgba(79,195,247,0.12); }
+        .achieve-card:hover { border-color: rgba(79,195,247,0.3); }
+        .achieve-card .achieve-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .achieve-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; margin-bottom: 0.5rem; }
+        .achieve-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; }
+
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .project-card { padding: 0; overflow: hidden; }
+        .project-card-image { height: 200px; position: relative; overflow: hidden; }
+        .project-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--card-ease); }
+        .project-card:hover .project-card-image img { transform: scale(1.08); }
+        .project-card-image-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, rgba(10,10,15,0.8)); }
+        .project-card-body { padding: 1.75rem; }
+        .project-card-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(79,195,247,0.1); color: var(--brand-light); border: 1px solid rgba(79,195,247,0.15); }
+        .project-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .project-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; }
+
+        .music-visualizer { display: flex; align-items: flex-end; justify-content: center; gap: 3px; height: 60px; margin-top: 2rem; padding: 2rem; background: var(--surface); border: 1px solid var(--border-light); border-radius: 16px; }
+        .viz-bar { width: 4px; background: linear-gradient(to top, var(--brand-purple), var(--brand-light)); border-radius: 2px; animation: viz-bounce 1s ease-in-out infinite; }
+        @keyframes viz-bounce { 0%,100% { height: 10px; } 50% { height: var(--bar-height, 40px); } }
+
+        .thought-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .thought-card { padding: 2rem; cursor: none; }
+        .thought-card .thought-date { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 1rem; letter-spacing: 0.05em; }
+        .thought-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem; line-height: 1.35; transition: color 0.3s; }
+        .thought-card:hover h3 { color: var(--brand-light); }
+        .thought-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; }
+        .thought-card .read-more { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem; font-size: 0.8rem; font-weight: 600; color: var(--brand-light); transition: gap 0.3s; }
+        .thought-card:hover .read-more { gap: 0.7rem; }
+
+        .contact-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+        .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; text-align: left; margin-top: 3rem; }
+        .contact-form .full-width { grid-column: 1 / -1; }
+        .form-group label { display: block; font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 0.5rem; letter-spacing: 0.03em; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.85rem 1rem; background: var(--surface); border: 1px solid var(--border-light); border-radius: 10px; color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; transition: all 0.3s; outline: none; }
+        .form-group input:focus, .form-group textarea:focus { border-color: rgba(79,195,247,0.4); background: rgba(255,255,255,0.06); box-shadow: 0 0 0 3px rgba(79,195,247,0.1); }
+        .form-group textarea { min-height: 140px; resize: vertical; }
+        .form-submit { grid-column: 1 / -1; display: flex; justify-content: center; margin-top: 0.5rem; }
+        .contact-links { display: flex; justify-content: center; gap: 2rem; margin-top: 3rem; flex-wrap: wrap; }
+        .contact-link { display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; cursor: none; }
+        .contact-link:hover { color: var(--text-primary); }
+
+        .contact-icons { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
+        .contact-icon-btn { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--card-glass); border: 1px solid var(--border-light); color: var(--brand-light); font-size: 1.2rem; transition: all 0.3s var(--spring); cursor: none; text-decoration: none; }
+        .contact-icon-btn:hover { transform: translateY(-4px) scale(1.08); border-color: var(--brand-light); box-shadow: 0 8px 24px rgba(79,195,247,0.2); }
+
+        .footer { padding: 3rem 2rem; border-top: 1px solid var(--border-light); background: var(--bg-secondary); }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .footer-text { font-size: 0.8rem; color: var(--text-muted); }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; cursor: none; }
+        .footer-links a:hover { color: var(--text-primary); }
+
+        #scroll-top { position: fixed; bottom: 32px; right: 32px; width: 48px; height: 48px; background: linear-gradient(135deg, var(--brand-blue), #3b82f6); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: none; z-index: 200; opacity: 0; pointer-events: none; transform: translateY(16px) scale(0.85); transition: opacity 300ms, transform 350ms var(--spring), box-shadow 300ms; box-shadow: 0 6px 24px rgba(30,144,255,0.3); border: none; font-size: 1rem; }
+        #scroll-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
+        #scroll-top:hover { box-shadow: 0 10px 36px rgba(30,144,255,0.45); transform: translateY(-3px) scale(1.07); }
+
+        .theme-nav { position: fixed; right: 1.5rem; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 1rem; }
+        .theme-nav-dot { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.3); background: transparent; cursor: none; transition: all 0.3s; position: relative; }
+        .theme-nav-dot.active { border-color: var(--brand-light); background: var(--brand-light); box-shadow: 0 0 10px rgba(79,195,247,0.4); }
+        .theme-nav-dot:hover { border-color: rgba(255,255,255,0.6); transform: scale(1.3); }
+        .theme-nav-dot .tooltip { position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%); background: rgba(10,10,15,0.9); backdrop-filter: blur(10px); border: 1px solid var(--border-light); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.7rem; font-weight: 500; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.3s; color: var(--text-primary); }
+        .light-mode .theme-nav-dot .tooltip { background: rgba(255,255,255,0.95); }
+        .theme-nav-dot:hover .tooltip { opacity: 1; }
+
+        .mobile-menu { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(10,10,15,0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+        .light-mode .mobile-menu { background: rgba(250,250,250,0.98); }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--text-primary); text-decoration: none; transition: color 0.3s; cursor: none; }
+        .mobile-menu a:hover { color: var(--brand-light); }
+        .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: none; }
+
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--card-ease); }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+        .fade-in-delay-4 { transition-delay: 0.4s; }
+
+        @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-10px) rotate(2deg); } 100% { transform: translateY(0px) rotate(0deg); } }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        .heading-font { font-family: var(--font-display); }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .nav-hamburger { display: flex; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .about-portrait { max-height: 400px; }
+            .about-stats { grid-template-columns: repeat(3, 1fr); }
+            .projects-grid { grid-template-columns: 1fr; }
+            .contact-form { grid-template-columns: 1fr; }
+            .theme-nav { display: none; }
+            .section { padding: 4rem 1.5rem; }
+            .hero-cta-group { flex-direction: column; align-items: center; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .about-stats { grid-template-columns: 1fr; }
+            .thought-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .hero-title { font-size: 2.2rem; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .achieve-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loader" id="loader">
+        <div class="loader-text">Loading Experience</div>
+        <div class="loader-bar"><div class="loader-bar-inner"></div></div>
+    </div>
+
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <button id="scroll-top" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <nav class="theme-nav" id="themeNav">
+        <div class="theme-nav-dot active" data-target="hero"><span class="tooltip">Home</span></div>
+        <div class="theme-nav-dot" data-target="about"><span class="tooltip">About</span></div>
+        <div class="theme-nav-dot" data-target="skills"><span class="tooltip">Skills</span></div>
+        <div class="theme-nav-dot" data-target="projects"><span class="tooltip">Projects</span></div>
+        <div class="theme-nav-dot" data-target="contact"><span class="tooltip">Contact</span></div>
+    </nav>
+
+    <nav class="nav" id="mainNav">
+        <div class="nav-inner">
+            <button id="logo-btn" onclick="scrollToTop(event)" class="nav-logo" aria-label="Back to top">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center text-white font-bold text-sm select-none flex-shrink-0">AM</div>
+                <span>Atupele Mkagula</span>
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact" class="nav-cta">Connect</a></li>
+                <li><button id="dark-mode-toggle" aria-label="Toggle theme"><i class="fas fa-sun"></i></button></li>
+            </ul>
+            
+            <div class="flex items-center gap-3">
+                <button id="dark-mode-toggle-mobile" class="flex items-center gap-2 text-sm font-medium" style="color:var(--text-secondary);background:none;border:none;cursor:none;">
+                    <i class="fas fa-sun"></i> <span>Light Mode</span>
+                </button>
+                <button id="hamburger" class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+        <a href="#hero" onclick="closeMobileMenu()">Home</a>
+        <a href="#about" onclick="closeMobileMenu()">About</a>
+        <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+        <a href="#skills" onclick="closeMobileMenu()">Skills</a>
+        <a href="#education" onclick="closeMobileMenu()">Education</a>
+        <a href="#achievements" onclick="closeMobileMenu()">Achievements</a>
+        <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+        <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    </div>
+
+    <section class="hero-section" id="hero">
+        <div class="hero-bg">
+            <div class="hero-bg-image" style="background-image: url('https://image.qwenlm.ai/public_source/144a8f24-32eb-43b6-8595-df52c7e305fd/171272083-df59-4b28-b823-ca50ac943d42.png');"></div>
+            <div class="hero-bg-overlay"></div>
+            <canvas class="hero-canvas" id="heroCanvas"></canvas>
+        </div>
+        <div class="hero-content">
+            <div class="hero-label fade-in">
+                <span class="w-3 h-3 bg-cyan-400 rounded-full animate-pulse inline-block"></span>
+                Cybersecurity · IT Consultant · Digital Systems
+            </div>
+            <h1 class="hero-title fade-in fade-in-delay-1">
+                Atupele Nathan<br/><span class="highlight">Mkagula</span>
+            </h1>
+            <p class="hero-subtitle fade-in fade-in-delay-2">
+                Customer Support Agent at betPawa. Music Producer turned Systems Thinker. Building secure, resilient digital platforms in Malawi and beyond.
+            </p>
+            <div class="hero-cta-group fade-in fade-in-delay-3">
+                <a href="#experience" class="btn-glow">View My Work <i class="fas fa-arrow-down text-xs"></i></a>
+                <a href="#contact" class="btn-outline">Let's Talk <i class="fas fa-arrow-right text-xs"></i></a>
+            </div>
+            <div class="flex gap-8 mt-12 pt-8 border-t border-white/10 justify-center fade-in fade-in-delay-4">
+                <div class="text-center">
+                    <div class="text-cyan-400 font-mono text-3xl font-bold" style="font-family:var(--font-display);">75%</div>
+                    <div class="text-zinc-500 text-xs tracking-widest mt-1">AVG FCR @ betPawa</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-cyan-400 font-mono text-3xl font-bold" style="font-family:var(--font-display);">6×</div>
+                    <div class="text-zinc-500 text-xs tracking-widest mt-1">Excellence Certs</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-cyan-400 font-mono text-3xl font-bold" style="font-family:var(--font-display);">5+</div>
+                    <div class="text-zinc-500 text-xs tracking-widest mt-1">Years Experience</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>SCROLL TO EXPLORE</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <section class="section" id="about" style="background:var(--bg-secondary);">
+        <div class="section-inner">
+            <div class="section-label fade-in">Who I Am</div>
+            <h2 class="section-title fade-in fade-in-delay-1">Technology professional who sees both the <span class="text-cyan-400">code</span> and the <span class="text-cyan-400">customer</span></h2>
+            <div class="about-grid">
+                <div class="fade-in fade-in-delay-2">
+                    <div class="about-text">
+                        <p>I currently support thousands of users daily as a <strong>Customer Support Agent at betPawa</strong>, resolving technical issues across Sportsbook, Casino, and Virtual Sports platforms while maintaining industry-leading FCR and CSAT metrics.</p>
+                        <p>Since 2020 I've run my own <strong>IT consulting practice</strong>, where I diagnose systems, train students, and secure small business infrastructure. My Certificate in Music Production taught me pattern recognition, systems thinking, and creative problem-solving. I now apply those skills directly to cybersecurity and digital infrastructure.</p>
+                        <p>Grounded in Malawi's entrepreneurial spirit and driven by global ambition, I bridge the gap between <strong>technical precision</strong> and <strong>creative vision</strong>.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-3 mt-6">
+                        <span class="skill-tag" style="cursor:none;">Cybersecurity</span>
+                        <span class="skill-tag" style="cursor:none;">IT Infrastructure</span>
+                        <span class="skill-tag" style="cursor:none;">Digital Risk</span>
+                        <span class="skill-tag" style="cursor:none;">Systems Thinking</span>
+                        <span class="skill-tag" style="cursor:none;">Music Production</span>
+                        <span class="skill-tag" style="cursor:none;">Customer Experience</span>
+                    </div>
+                </div>
+                <div class="fade-in fade-in-delay-3">
+                    <div class="terminal">
+                        <span class="cmd">$ whoami</span><br/>
+                        Atupele Nathan Mkagula<br/><br/>
+                        <span class="cmd">$ current_role</span><br/>
+                        Customer Support Agent @ betPawa<br/><br/>
+                        <span class="cmd">$ focus</span><br/>
+                        Cybersecurity · Backend Security<br/>
+                        Digital Infrastructure<br/><br/>
+                        <span class="cmd">$ background</span><br/>
+                        Music Producer > IT Consultant<br/>
+                        > Digital Systems Specialist<br/><br/>
+                        <span class="cmd">$ location</span><br/>
+                        Malawi 🌍<br/><br/>
+                        <span class="cmd">$ status</span><br/>
+                        Available for projects ▮
+                    </div>
+                </div>
+            </div>
+            <div class="about-stats fade-in fade-in-delay-4">
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6×</div>
+                    <div class="stat-label">Excellence Certs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1K+</div>
+                    <div class="stat-label">Users Supported Daily</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="experience" style="background:var(--bg-tertiary);">
+        <div class="section-inner">
+            <div class="section-label fade-in">Professional Journey</div>
+            <h2 class="section-title fade-in fade-in-delay-1">Work Experience</h2>
+            <div class="space-y-6 mt-8">
+                <div class="glass-card experience-card fade-in">
+                    <div class="exp-header">
+                        <div><h3>Customer Support Agent</h3><span class="exp-company">betPawa</span></div>
+                        <span class="exp-date">2025 – Present</span>
+                    </div>
+                    <p style="color:var(--text-secondary); font-size:0.9rem;">Deliver high-quality multi-channel customer support across sportsbook and casino platforms while consistently achieving performance KPIs.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i>Consistently achieved and exceeded FCR targets of 75% for account access and OTP-related issues.</li>
+                        <li><i class="fas fa-check-circle"></i>Managed high-volume call and chat support using pawaDesk ticket management system.</li>
+                        <li><i class="fas fa-check-circle"></i>Troubleshot technical issues across sportsbook markets including Asian Handicap, Over/Under, and Cashout systems.</li>
+                        <li><i class="fas fa-check-circle"></i>Implemented Responsible Gambling protocols and conducted identity verification to prevent fraud.</li>
+                    </ul>
+                </div>
+                <div class="glass-card experience-card fade-in fade-in-delay-1">
+                    <div class="exp-header">
+                        <div><h3>Credit Officer</h3><span class="exp-company">Yellow Solar Africa</span></div>
+                        <span class="exp-date">2024 – 2025</span>
+                    </div>
+                    <p style="color:var(--text-secondary); font-size:0.9rem;">Managed customer credit portfolios and ensured strong repayment performance while maintaining excellent client relationships.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i>Managed a portfolio of customer contracts, ensuring timely repayments and minimizing credit risk.</li>
+                        <li><i class="fas fa-check-circle"></i>Conducted credit analysis and risk assessments to identify potential repayment challenges.</li>
+                        <li><i class="fas fa-check-circle"></i>Provided financial counselling and developed sustainable repayment solutions.</li>
+                        <li><i class="fas fa-check-circle"></i>Ensured customer feedback responses within 9-hour service level agreements.</li>
+                    </ul>
+                </div>
+                <div class="glass-card experience-card fade-in fade-in-delay-2">
+                    <div class="exp-header">
+                        <div><h3>IT Consultant & Freelancer</h3><span class="exp-company">Self-Employed</span></div>
+                        <span class="exp-date">2020 – Present</span>
+                    </div>
+                    <p style="color:var(--text-secondary); font-size:0.9rem;">Provide technical services and IT support to individuals and small businesses across Malawi.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i>Performed computer diagnostics, system troubleshooting, and data administration.</li>
+                        <li><i class="fas fa-check-circle"></i>Assisted businesses in optimizing IT infrastructure and digital workflows.</li>
+                        <li><i class="fas fa-check-circle"></i>Delivered computer training and digital literacy coaching to students and clients.</li>
+                        <li><i class="fas fa-check-circle"></i>Provided basic computer security and system maintenance services.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="skills" style="background:var(--bg-secondary);">
+        <div class="section-inner">
+            <div class="section-label fade-in">Expertise</div>
+            <h2 class="section-title fade-in fade-in-delay-1">Core Skills & Competencies</h2>
+            <p class="section-description fade-in fade-in-delay-2">A multidisciplinary toolkit spanning infrastructure, security, creative technology, and customer experience.</p>
+            <div class="skills-grid">
+                <div class="glass-card skill-card fade-in" style="--card-accent: #4fc3f7;">
+                    <div class="skill-icon" style="background:rgba(79,195,247,0.1); color:#4fc3f7;"><i class="fas fa-headset"></i></div>
+                    <h3>Customer Experience</h3>
+                    <p>Multi-channel support, FCR and CSAT optimization, complaint resolution, and responsible gambling compliance.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Support Ops</span>
+                        <span class="skill-tag">Multi-Channel</span>
+                        <span class="skill-tag">FCR & CSAT</span>
+                        <span class="skill-tag">Compliance</span>
+                    </div>
+                </div>
+                <div class="glass-card skill-card fade-in fade-in-delay-1" style="--card-accent: #b388ff;">
+                    <div class="skill-icon" style="background:rgba(179,136,255,0.1); color:#b388ff;"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Cybersecurity</h3>
+                    <p>Threat assessment, security architecture, identity verification, incident response, and zero-trust frameworks.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Pen Testing</span>
+                        <span class="skill-tag">SIEM</span>
+                        <span class="skill-tag">Zero Trust</span>
+                        <span class="skill-tag">Risk Mgmt</span>
+                    </div>
+                </div>
+                <div class="glass-card skill-card fade-in fade-in-delay-2" style="--card-accent: #ffab40;">
+                    <div class="skill-icon" style="background:rgba(255,171,64,0.1); color:#ffab40;"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Technical Operations</h3>
+                    <p>IT diagnostics, system troubleshooting, sportsbook and casino platform support, and digital workflow optimization.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Diagnostics</span>
+                        <span class="skill-tag">Sportsbook</span>
+                        <span class="skill-tag">Casino/RNG</span>
+                        <span class="skill-tag">pawaDesk</span>
+                    </div>
+                </div>
+                <div class="glass-card skill-card fade-in fade-in-delay-3" style="--card-accent: #69f0ae;">
+                    <div class="skill-icon" style="background:rgba(105,240,174,0.1); color:#69f0ae;"><i class="fas fa-network-wired"></i></div>
+                    <h3>Infrastructure & DevOps</h3>
+                    <p>Cloud architecture, CI/CD pipelines, network engineering, and infrastructure as code for scalable operations.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Networking</span>
+                    </div>
+                </div>
+                <div class="glass-card skill-card fade-in fade-in-delay-4" style="--card-accent: #b388ff;">
+                    <div class="skill-icon" style="background:rgba(179,136,255,0.1); color:#b388ff;"><i class="fas fa-music"></i></div>
+                    <h3>Music Production</h3>
+                    <p>Audio engineering, sound design, composition, and creative production from studio to live environments.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Ableton</span>
+                        <span class="skill-tag">Mixing</span>
+                        <span class="skill-tag">Sound Design</span>
+                        <span class="skill-tag">Mastering</span>
+                    </div>
+                </div>
+                <div class="glass-card skill-card fade-in fade-in-delay-4" style="--card-accent: #ffab40;">
+                    <div class="skill-icon" style="background:rgba(255,171,64,0.1); color:#ffab40;"><i class="fas fa-chart-line"></i></div>
+                    <h3>Risk & Compliance</h3>
+                    <p>Credit risk assessment, portfolio management, responsible gambling protocols, and financial counseling.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Credit Risk</span>
+                        <span class="skill-tag">Portfolio Mgmt</span>
+                        <span class="skill-tag">KYC</span>
+                        <span class="skill-tag">AML</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="education" style="background:var(--bg-tertiary);">
+        <div class="section-inner">
+            <div class="section-label fade-in">Learning Journey</div>
+            <h2 class="section-title fade-in fade-in-delay-1">Education</h2>
+            <div class="edu-grid">
+                <div class="glass-card edu-card fade-in">
+                    <div class="edu-icon">🎓</div>
+                    <h3>University of Malawi</h3>
+                    <p class="edu-school">Chancellor College</p>
+                    <p class="edu-degree">Certificate in Music Production</p>
+                    <p class="edu-year">2022 · Digital Marketing & Arts Entrepreneurship</p>
+                </div>
+                <div class="glass-card edu-card fade-in fade-in-delay-1">
+                    <div class="edu-icon"></div>
+                    <h3>NACIT</h3>
+                    <p class="edu-school">National College of Information Technology</p>
+                    <p class="edu-degree">Level 4 Diploma in Computing</p>
+                    <p class="edu-year">2019 – 2020</p>
+                </div>
+                <div class="glass-card edu-card fade-in fade-in-delay-2">
+                    <div class="edu-icon">📚</div>
+                    <h3>Chinsapo Secondary School</h3>
+                    <p class="edu-school">Malawi</p>
+                    <p class="edu-degree">School Certificate of Education</p>
+                    <p class="edu-year">2017</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="achievements" style="background:var(--bg-secondary);">
+        <div class="section-inner">
+            <div class="section-label fade-in">Recognition</div>
+            <h2 class="section-title fade-in fade-in-delay-1">Key Achievements</h2>
+            <div class="achieve-grid">
+                <div class="glass-card achieve-card fade-in">
+                    <div class="achieve-icon">🏆</div>
+                    <h3>FCR Excellence</h3>
+                    <p>Consistently exceeded FCR targets (75%) for account access and OTP issues at betPawa, ranking among top performers.</p>
+                </div>
+                <div class="glass-card achieve-card fade-in fade-in-delay-1">
+                    <div class="achieve-icon">⭐</div>
+                    <h3>Quality Metrics</h3>
+                    <p>Maintained strong CSAT and quality scoring metrics across all customer support operations and channels.</p>
+                </div>
+                <div class="glass-card achieve-card fade-in fade-in-delay-2">
+                    <div class="achieve-icon">📜</div>
+                    <h3>pawaTech Training</h3>
+                    <p>Successfully completed global pawaTech training program with distinction, earning 6 Excellence Certificates.</p>
+                </div>
+                <div class="glass-card achieve-card fade-in fade-in-delay-3">
+                    <div class="achieve-icon">⚙️</div>
+                    <h3>Team Coordination</h3>
+                    <p>Effectively coordinated with Risk and Technical teams to resolve complex escalations and prevent fraud.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="projects" style="background:var(--bg-tertiary);">
+        <div class="section-inner">
+            <div class="section-label fade-in">Featured Projects</div>
+            <h2 class="section-title fade-in fade-in-delay-1">Selected Work</h2>
+            <p class="section-description fade-in fade-in-delay-2">A curated selection of infrastructure builds, security implementations, creative productions, and technology solutions.</p>
+            <div class="projects-grid">
+                <div class="glass-card project-card fade-in">
+                    <div class="project-card-image">
+                        <img src="https://image.qwenlm.ai/public_source/144a8f24-32eb-43b6-8595-df52c7e305fd/17b21a600-d319-4112-8dde-2990cd58a8eb.png" alt="Cybersecurity Project">
+                        <div class="project-card-image-overlay"></div>
+                    </div>
+                    <div class="project-card-body">
+                        <span class="project-card-label">Cybersecurity</span>
+                        <h3>Enterprise Security Architecture</h3>
+                        <p>Designed and implemented a zero-trust security framework, reducing incident response time by 70% and strengthening organizational defenses.</p>
+                    </div>
+                </div>
+                <div class="glass-card project-card fade-in fade-in-delay-1">
+                    <div class="project-card-image">
+                        <img src="https://image.qwenlm.ai/public_source/144a8f24-32eb-43b6-8595-df52c7e305fd/185372d74-94ef-4c2d-911c-3f621d01d6dd.png" alt="Creative Project">
+                        <div class="project-card-image-overlay"></div>
+                    </div>
+                    <div class="project-card-body">
+                        <span class="project-card-label" style="background:rgba(179,136,255,0.1);color:#b388ff;border-color:rgba(179,136,255,0.15);">Creative</span>
+                        <h3>Immersive Sound Design</h3>
+                        <p>Creative audio-visual experience combining generative sound design with real-time visual synthesis for an immersive exhibition.</p>
+                    </div>
+                </div>
+                <div class="glass-card project-card fade-in fade-in-delay-2">
+                    <div class="project-card-image">
+                        <img src="https://image.qwenlm.ai/public_source/144a8f24-32eb-43b6-8595-df52c7e305fd/118f781c4-9589-4b15-96e2-075fc6b50a1f.png" alt="Infrastructure Project">
+                        <div class="project-card-image-overlay"></div>
+                    </div>
+                    <div class="project-card-body">
+                        <span class="project-card-label" style="background:rgba(105,240,174,0.1);color:#69f0ae;border-color:rgba(105,240,174,0.15);">Infrastructure</span>
+                        <h3>Cloud Migration & Optimization</h3>
+                        <p>End-to-end migration of legacy systems to cloud-native architecture, achieving 40% cost reduction and 99.99% uptime.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="music" style="background:var(--bg-secondary);">
+        <div class="section-inner">
+            <div class="section-label fade-in" style="color:var(--brand-purple);"><span style="display:inline-block;width:24px;height:1px;background:var(--brand-purple);"></span>Creative Work</div>
+            <h2 class="section-title fade-in fade-in-delay-1">Music & Sonic Innovation</h2>
+            <p class="section-description fade-in fade-in-delay-2">Exploring the space where technology amplifies creativity. From electronic production to cinematic soundscapes, every project is a fusion of precision and emotion.</p>
+            <div class="skills-grid" style="margin-top:2rem;">
+                <div class="glass-card skill-card fade-in fade-in-delay-3" style="--card-accent:#b388ff;">
+                    <div class="skill-icon" style="background:rgba(179,136,255,0.1);color:#b388ff;"><i class="fas fa-music"></i></div>
+                    <h3>Electronic Production</h3>
+                    <p>Synthesizer-driven compositions, beat-making, and arrangement across ambient, electronic, and hybrid genres.</p>
+                </div>
+                <div class="glass-card skill-card fade-in fade-in-delay-3" style="--card-accent:#4fc3f7;">
+                    <div class="skill-icon" style="background:rgba(79,195,247,0.1);color:#4fc3f7;"><i class="fas fa-film"></i></div>
+                    <h3>Film & Media Scoring</h3>
+                    <p>Cinematic compositions and sound design for visual media, documentaries, and digital storytelling projects.</p>
+                </div>
+                <div class="glass-card skill-card fade-in fade-in-delay-3" style="--card-accent:#ffab40;">
+                    <div class="skill-icon" style="background:rgba(255,171,64,0.1);color:#ffab40;"><i class="fas fa-volume-up"></i></div>
+                    <h3>Live Sound Engineering</h3>
+                    <p>Stage audio systems, live mixing, and real-time sound processing for performances and events.</p>
+                </div>
+            </div>
+            <div class="music-visualizer fade-in fade-in-delay-4" id="musicViz"></div>
+        </div>
+    </section>
+
+    <section class="section" id="thought-leadership" style="background:var(--bg-tertiary);">
+        <div class="section-inner">
+            <div class="section-label fade-in">Thought Leadership</div>
+            <h2 class="section-title fade-in fade-in-delay-1">Insights & Perspectives</h2>
+            <p class="section-description fade-in fade-in-delay-2">Writing on technology, African innovation, cybersecurity strategy, and the creative future of engineering.</p>
+            <div class="thought-grid">
+                <div class="glass-card thought-card fade-in">
+                    <div class="thought-date">December 2024</div>
+                    <h3>Building Secure Infrastructure in Emerging Markets</h3>
+                    <p>Why cybersecurity frameworks designed for Silicon Valley do not translate to African contexts, and what we need instead.</p>
+                    <div class="read-more">Read more →</div>
+                </div>
+                <div class="glass-card thought-card fade-in fade-in-delay-1">
+                    <div class="thought-date">November 2024</div>
+                    <h3>The Engineer as Creative: Redefining Technical Identity</h3>
+                    <p>How music production and creative workflows sharpen systems thinking and lead to better engineering outcomes.</p>
+                    <div class="read-more">Read more →</div>
+                </div>
+                <div class="glass-card thought-card fade-in fade-in-delay-2">
+                    <div class="thought-date">October 2024</div>
+                    <h3>Digital Infrastructure as National Strategy for Malawi</h3>
+                    <p>A blueprint for how strategic investment in digital infrastructure can accelerate economic transformation across the region.</p>
+                    <div class="read-more">Read more →</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact" style="background:var(--bg-secondary);">
+        <div class="contact-inner">
+            <div class="section-label fade-in" style="justify-content:center;">Get In Touch</div>
+            <h2 class="section-title fade-in fade-in-delay-1" style="text-align:center;">Let's Build Something<br/><span class="text-cyan-400">Meaningful</span> Together</h2>
+            <p class="section-description fade-in fade-in-delay-2" style="text-align:center;">
+                Whether it's a security audit, infrastructure project, creative collaboration, or strategic consultation, I am always interested in conversations that push boundaries.
+            </p>
+            
+            <div class="contact-icons fade-in fade-in-delay-3">
+                <a href="tel:+265881762894" class="contact-icon-btn" aria-label="Phone"><i class="fas fa-phone"></i></a>
+                <a href="mailto:atupelemkagulaofficial@gmail.com" class="contact-icon-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://about.me/atupele.mkagula" target="_blank" rel="noopener noreferrer" class="contact-icon-btn" aria-label="Website"><i class="fas fa-globe"></i></a>
+            </div>
+            
+            <form class="contact-form fade-in fade-in-delay-3" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group full-width">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" placeholder="What's this about?">
+                </div>
+                <div class="form-group full-width">
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="Tell me about your project or idea..." required></textarea>
+                </div>
+                <div class="form-submit">
+                    <button type="submit" class="btn-glow" style="min-width:200px;justify-content:center;">Send Message <i class="fas fa-paper-plane text-xs"></i></button>
+                </div>
+            </form>
+            
+            <div class="contact-links fade-in fade-in-delay-4">
+                <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/lord-tupe" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://x.com/lord_tupe" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fab fa-twitter"></i> Twitter / X</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center text-white font-bold text-xs">AM</div>
+                <div class="footer-text">© 2026 Atupele Nathan Mkagula. All rights reserved.</div>
+            </div>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-text">References available upon request.</div>
+        </div>
+    </footer>
+
+    <script>
+    (function setViewportHeight() {
+        const updateVh = () => { document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px'); };
+        updateVh();
+        window.addEventListener('resize', updateVh);
+    })();
+
+    window.addEventListener('load', () => {
+        setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1800);
+    });
+
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+    function animRing() { rx += (mx - rx) * 0.14; ry += (my - ry) * 0.14; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); }
+    animRing();
+    document.querySelectorAll('a, button, .glass-card, .skill-tag, .theme-nav-dot, .contact-icon-btn, input, textarea').forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+
+    function scrollToTop(e) {
+        const btn = e.currentTarget;
+        const rect = btn.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        ripple.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size/2}px;top:${e.clientY - rect.top - size/2}px`;
+        btn.style.position = 'relative';
+        btn.style.overflow = 'hidden';
+        btn.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const fab = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => fab.classList.toggle('visible', window.scrollY > 400), { passive: true });
+
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+    const ioNav = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(l => l.classList.remove('active'));
+                const id = entry.target.id;
+                const active = document.querySelector(`.nav-links a[href="#${id}"]`);
+                if (active) active.classList.add('active');
+            }
+        });
+    }, { threshold: 0.3 });
+    sections.forEach(s => ioNav.observe(s));
+
+    const themeDots = document.querySelectorAll('.theme-nav-dot');
+    const trackedSections = ['hero', 'about', 'skills', 'projects', 'contact'];
+    const heroObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const idx = trackedSections.indexOf(entry.target.id);
+                if (idx !== -1) themeDots.forEach((d, i) => d.classList.toggle('active', i === idx));
+            }
+        });
+    }, { threshold: 0.4 });
+    trackedSections.forEach(id => { const el = document.getElementById(id); if (el) heroObserver.observe(el); });
+    themeDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const target = document.getElementById(dot.dataset.target);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    const fadeObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); fadeObserver.unobserve(entry.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    let menuOpen = false;
+    hamburger.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle('open', menuOpen);
+        hamburger.setAttribute('aria-expanded', menuOpen);
+        const spans = hamburger.querySelectorAll('span');
+        if (menuOpen) {
+            spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+            spans[2].style.width = '24px';
+        } else {
+            spans[0].style.transform = ''; spans[1].style.opacity = '1';
+            spans[2].style.transform = ''; spans[2].style.width = '24px';
+        }
+    });
+    document.getElementById('mobileClose').addEventListener('click', closeMobileMenu);
+    function closeMobileMenu() {
+        menuOpen = false;
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        const spans = hamburger.querySelectorAll('span');
+        spans[0].style.transform = ''; spans[1].style.opacity = '1';
+        spans[2].style.transform = ''; spans[2].style.width = '24px';
+    }
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+    });
+
+    const darkToggle = document.getElementById('dark-mode-toggle');
+    const darkToggleMobile = document.getElementById('dark-mode-toggle-mobile');
+    const icon = darkToggle?.querySelector('i');
+    const iconMobile = darkToggleMobile?.querySelector('i');
+
+    function setTheme(isLight) {
+        if (isLight) {
+            document.body.classList.add('light-mode');
+            if (icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+            if (iconMobile) { iconMobile.classList.remove('fa-sun'); iconMobile.classList.add('fa-moon'); }
+            if (darkToggleMobile) darkToggleMobile.querySelector('span').textContent = 'Dark Mode';
+        } else {
+            document.body.classList.remove('light-mode');
+            if (icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+            if (iconMobile) { iconMobile.classList.remove('fa-moon'); iconMobile.classList.add('fa-sun'); }
+            if (darkToggleMobile) darkToggleMobile.querySelector('span').textContent = 'Light Mode';
+        }
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') setTheme(true);
+
+    function toggleTheme() { setTheme(!document.body.classList.contains('light-mode')); }
+    if (darkToggle) darkToggle.addEventListener('click', toggleTheme);
+    if (darkToggleMobile) darkToggleMobile.addEventListener('click', toggleTheme);
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]');
+        const orig = btn.innerHTML;
+        btn.innerHTML = 'Message Sent <i class="fas fa-check text-xs"></i>';
+        btn.style.background = 'linear-gradient(135deg, #69f0ae, #00c853)';
+        setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; e.target.reset(); }, 2500);
+    }
+
+    const vizContainer = document.getElementById('musicViz');
+    for (let i = 0; i < 60; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'viz-bar';
+        bar.style.setProperty('--bar-height', (8 + Math.random() * 45) + 'px');
+        bar.style.animationDelay = (Math.random() * 1.5) + 's';
+        bar.style.animationDuration = (0.6 + Math.random() * 0.8) + 's';
+        vizContainer.appendChild(bar);
+    }
+
+    (function() {
+        const canvas = document.getElementById('heroCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        function resize() { canvas.width = canvas.parentElement.offsetWidth; canvas.height = canvas.parentElement.offsetHeight; }
+        resize();
+        window.addEventListener('resize', resize);
+
+        const pts = [];
+        const COUNT = 70;
+        for (let i = 0; i < COUNT; i++) {
+            pts.push({
+                x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.25,
+                size: Math.random() * 2 + 0.5, alpha: Math.random() * 0.4 + 0.1
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'rgba(79,195,247,0.025)'; ctx.lineWidth = 1;
+            const gs = 50;
+            for (let x = 0; x < canvas.width; x += gs) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke(); }
+            for (let y = 0; y < canvas.height; y += gs) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke(); }
+
+            for (let i = 0; i < pts.length; i++) {
+                const p = pts[i];
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(79,195,247,${p.alpha})`; ctx.fill();
+                for (let j = i + 1; j < pts.length; j++) {
+                    const q = pts[j]; const dx = p.x - q.x, dy = p.y - q.y;
+                    const d = Math.sqrt(dx*dx + dy*dy);
+                    if (d < 140) {
+                        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+                        ctx.strokeStyle = `rgba(79,195,247,${0.05 * (1 - d/140)})`; ctx.lineWidth = 0.5; ctx.stroke();
+                    }
+                }
+            }
+            const t = Date.now() * 0.001;
+            for (let w = 0; w < 3; w++) {
+                ctx.beginPath(); ctx.strokeStyle = `rgba(79,195,247,${0.06 + Math.sin(t + w) * 0.03})`; ctx.lineWidth = 1;
+                for (let x = 0; x < canvas.width; x += 4) {
+                    const y = canvas.height * 0.25 + Math.sin(x * 0.004 + t + w * 1.2) * 60 + w * 70;
+                    if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            }
+            requestAnimationFrame(draw);
+        }
+        draw();
+    })();
+
+    window.addEventListener('scroll', () => {
+        const sy = window.scrollY;
+        document.querySelectorAll('.hero-bg-image').forEach(bg => {
+            const section = bg.closest('.hero-section');
+            const rect = section.getBoundingClientRect();
+            bg.style.transform = `translateY(${rect.top * 0.3}px) scale(1.1)`;
+        });
+    }, { passive: true });
+    </script>
+</body>
+</html>
