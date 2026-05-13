@@ -1,4 +1,5 @@
-# Portfolio — Atupele Nathan Mkagula
+```markdown
+# Portfolio: Atupele Nathan Mkagula
 
 Personal portfolio website for a cybersecurity practitioner, IT consultant, and digital systems specialist based in Malawi.
 
@@ -8,7 +9,7 @@ A high-performance, responsive portfolio built with vanilla HTML, CSS, and JavaS
 
 ## Features
 
-- **Theme System**: Dark/light toggle with `localStorage` persistence
+- **Theme System**: Dark/light toggle with localStorage persistence
 - **Custom Cursor**: Gold-accented cursor with context-aware hover scaling
 - **Scroll Animations**: Intersection Observer-powered fade-ins and parallax
 - **Canvas Hero**: Responsive particle network with real-time rendering
@@ -24,7 +25,7 @@ A high-performance, responsive portfolio built with vanilla HTML, CSS, and JavaS
 | Styling | CSS3, CSS Variables, Tailwind CSS (CDN) |
 | Logic | Vanilla JavaScript (ES6+) |
 | Icons | Font Awesome 6.5.1 |
-| Typography | Inter + Space Grotesk (`@fontsource`) |
+| Typography | Inter + Space Grotesk (@fontsource) |
 
 ## Quick Start
 
@@ -67,8 +68,9 @@ No configuration files or build steps are required.
 └── README.md           # Documentation
 ```
 
-> **Note**: The codebase is intentionally consolidated into a single file for simplicity and fast deployment. For larger applications, split CSS/JS into modular files and implement a build pipeline.
+> Note: The codebase is intentionally consolidated into a single file for simplicity and fast deployment. For larger applications, split CSS/JS into modular files and implement a build pipeline.
 
 ## License
 
-© 2026 Atupele Nathan Mkagula. All rights reserved.
+Copyright 2026 Atupele Nathan Mkagula. All rights reserved.
+```
