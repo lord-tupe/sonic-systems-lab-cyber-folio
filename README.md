@@ -1,4 +1,4 @@
-# Atupele Nathan Mkagula — Portfolio
+# Atupele Nathan Mkagula — sonic-systems-lab-cyber-folio
 
 Personal portfolio for **Atupele Nathan Mkagula**, a Cybersecurity Practitioner, IT Consultant, Customer Support Specialist at betPawa, and Systems Thinker based in Malawi.
 
