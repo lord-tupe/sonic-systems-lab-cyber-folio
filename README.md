@@ -1,76 +1,82 @@
-```markdown
-# Portfolio: Atupele Nathan Mkagula
+# Atupele Nathan Mkagula — Portfolio
 
-Personal portfolio website for a cybersecurity practitioner, IT consultant, and digital systems specialist based in Malawi.
+Personal portfolio for **Atupele Nathan Mkagula**, a Cybersecurity Practitioner, IT Consultant, Customer Support Specialist at betPawa, and Systems Thinker based in Malawi.
 
-## Overview
+---
 
-A high-performance, responsive portfolio built with vanilla HTML, CSS, and JavaScript. Delivered as a single file for portability, with a unified dark/light theme system, custom cursor interactions, scroll-driven animations, and canvas-based hero visuals. No build step required.
+## 🌟 Key Features
 
-## Features
+- **Zero-Dependency Core**: Built with vanilla HTML5, CSS3 design tokens, and modular ES6+ JavaScript. No runtime frameworks or build pipeline required.
+- **Interactive Terminal**: Fully functional CLI command prompt in the About section supporting `whoami`, `skills`, `projects`, `certs`, `socials`, `theme`, `matrix`, `clear`, and more.
+- **Project Filter & Rich Case Study Modals**: Filter projects by category (*Cybersecurity*, *Infrastructure*, *Creative*, *Support*) and inspect architectural blueprints, problem/solution breakdowns, and metrics.
+- **Web Audio API Ambient Synthesizer**: Procedural real-time ambient synthesizer engine and reactive visualizer built directly in-browser with zero external MP3 dependencies.
+- **CV / Resume Quick Viewer**: Built-in modal for reviewing qualifications, credentials, and triggering direct print-to-PDF.
+- **Instant Clipboard Actions**: One-click copy for email and phone numbers with animated floating toast notifications.
+- **Dark & Light Mode Engine**: Seamless theme switching with system preference detection and `localStorage` persistence.
+- **Canvas Particle Network**: Real-time responsive particle physics with interactive mouse disturbance and flowing sine waves.
+- **Comprehensive SEO & Rich Snippets**: Complete OpenGraph, Twitter Cards, SVG favicon, and JSON-LD schema (`schema.org/Person`) for search engine optimization.
+- **Decap CMS Ready**: Included Decap CMS backend configuration in `/admin/` for content management.
 
-- **Theme System**: Dark/light toggle with localStorage persistence
-- **Custom Cursor**: Gold-accented cursor with context-aware hover scaling
-- **Scroll Animations**: Intersection Observer-powered fade-ins and parallax
-- **Canvas Hero**: Responsive particle network with real-time rendering
-- **Mobile Navigation**: Collapsible menu with smooth transitions
-- **Accessibility**: Semantic markup, ARIA labels, keyboard focus states
-- **Zero Build Step**: Runs directly in any modern browser
+---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 | Layer | Technology |
-|-------|------------|
-| Markup | HTML5 (semantic) |
-| Styling | CSS3, CSS Variables, Tailwind CSS (CDN) |
-| Logic | Vanilla JavaScript (ES6+) |
-| Icons | Font Awesome 6.5.1 |
-| Typography | Inter + Space Grotesk (@fontsource) |
+|---|---|
+| **Markup** | HTML5 (Semantic & Accessible) |
+| **Styling** | Modern CSS3 (Custom Properties, Glassmorphism, Print Styles) |
+| **Logic** | Vanilla JavaScript (ES6+, Web Audio API, Canvas 2D) |
+| **Icons & Fonts** | Font Awesome 6.5.1, Inter, Space Grotesk, JetBrains Mono |
+| **CMS** | Decap CMS (Netlify Identity / Git Gateway) |
 
-## Quick Start
+---
+
+## 🚀 Quick Start
+
+To preview or run the portfolio locally:
 
 ```bash
 # Clone the repository
-git clone https://github.com/<username>/atupele-portfolio.git
-cd atupele-portfolio
+git clone https://github.com/lord-tupe/demo-portfolio-to-be-deleted-later.git
+cd demo-portfolio-to-be-deleted-later
 
-# Open in browser
-open index.html
+# Serve locally with Python
+python -m http.server 8000
 
-# Or serve locally (recommended for asset caching & CORS)
-python3 -m http.server 8000
+# Or with Node
+npx serve .
 ```
 
-## Customization
+Open `http://localhost:8000` in your browser.
 
-- **Colors & Theme**: Edit variables in `:root` and `body.light-mode` at the top of the `<style>` block
-- **Content**: Update text directly within each `<section>`
-- **Images**: Replace `assets/headshot.jpg` and swap hero background URLs in the `style` attributes
-- **Links**: Modify contact/social URLs in the `#contact` section and footer
+---
 
-## Deployment
-
-Ready for any static hosting platform. Push to your default branch for automatic deployment:
-
-- GitHub Pages
-- Netlify
-- Vercel
-- Cloudflare Pages
-- AWS S3 + CloudFront
-
-No configuration files or build steps are required.
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-├── index.html          # Complete source (HTML + CSS + JS)
-├── assets/             # Local media (headshot, project images)
+├── index.html          # Root production entry point (SEO, Semantic UI)
+├── css/
+│   └── styles.css      # Design tokens, themes, modals, print styles
+├── js/
+│   └── main.js         # Canvas animation, Terminal CLI, Web Audio, Modals
+├── admin/
+│   ├── index.html      # Decap CMS admin dashboard
+│   └── config.yml      # Decap CMS collections (Projects & Articles)
 └── README.md           # Documentation
 ```
 
-> Note: The codebase is intentionally consolidated into a single file for simplicity and fast deployment. For larger applications, split CSS/JS into modular files and implement a build pipeline.
+---
 
-## License
+## 🚀 Deployment
 
-Copyright 2026 Atupele Nathan Mkagula. All rights reserved.
-```
+The site is configured for instant zero-configuration static hosting:
+- **GitHub Pages**: Set Source to `main` branch root (`/`)
+- **Netlify**: Set Publish directory to `.`
+- **Vercel**: Set Output directory to `.`
+- **Cloudflare Pages**: Set Build output directory to `.`
+
+---
+
+## 📄 License
+
+Copyright &copy; 2026 Atupele Nathan Mkagula. All rights reserved.

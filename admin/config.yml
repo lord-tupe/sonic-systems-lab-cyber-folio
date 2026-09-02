@@ -2,14 +2,33 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/images"
-public_folder: "/images"
+media_folder: "assets/images"
+public_folder: "/assets/images"
 
 collections:
-  - name: "posts"
-    label: "Blog Posts"
-    folder: "content/posts"
+  - name: "projects"
+    label: "Case Studies & Projects"
+    folder: "content/projects"
     create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Project Title", name: "title", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["Cybersecurity", "Infrastructure", "Creative", "Support"] }
+      - { label: "Summary", name: "summary", widget: "string" }
+      - { label: "Key Stat Value", name: "stat_val", widget: "string", required: false }
+      - { label: "Key Stat Label", name: "stat_lbl", widget: "string", required: false }
+      - { label: "Technologies", name: "technologies", widget: "list" }
+      - { label: "Cover Image", name: "image", widget: "image", required: false }
+      - { label: "Case Study Body", name: "body", widget: "markdown" }
+
+  - name: "insights"
+    label: "Thought Leadership & Articles"
+    folder: "content/insights"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Content", name: "body", widget: "markdown" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Topic / Tag", name: "topic", widget: "string" }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Article Content", name: "body", widget: "markdown" }
